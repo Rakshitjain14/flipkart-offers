@@ -1,0 +1,40 @@
+
+CREATE TABLE offers (
+    offer_id TEXT PRIMARY KEY,                  -- adjustment_id
+    title TEXT NOT NULL,
+    summary TEXT,
+    adjustment_type TEXT,
+    adjustment_sub_type TEXT,
+    is_discover BOOLEAN,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+
+CREATE TABLE offer_payment_instruments (
+    offer_id TEXT REFERENCES offers(offer_id) ON DELETE CASCADE,
+    instrument TEXT,
+    PRIMARY KEY (offer_id, instrument)
+);
+
+CREATE TABLE offer_banks (
+    offer_id TEXT REFERENCES offers(offer_id) ON DELETE CASCADE,
+    bank TEXT,
+    PRIMARY KEY (offer_id, bank)
+);
+
+CREATE TABLE offer_emi_months (
+    offer_id TEXT REFERENCES offers(offer_id) ON DELETE CASCADE,
+    emi_month TEXT,
+    PRIMARY KEY (offer_id, emi_month)
+);
+
+CREATE TABLE offer_card_networks (
+    offer_id TEXT REFERENCES offers(offer_id) ON DELETE CASCADE,
+    card_network TEXT,
+    PRIMARY KEY (offer_id, card_network)
+);
+CREATE TABLE offer_display_tags (
+    offer_id TEXT REFERENCES offers(offer_id) ON DELETE CASCADE,
+    tag TEXT,
+    PRIMARY KEY (offer_id, tag)
+);

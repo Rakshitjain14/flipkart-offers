@@ -1,0 +1,1 @@
+curl --location 'http://localhost:8080/highest-discount?amountToPay=10000&bankName=IDFC'
